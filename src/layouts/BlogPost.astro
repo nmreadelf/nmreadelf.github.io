@@ -4,7 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Reaction from '../components/Reaction';
+// import Reaction from '../components/Reaction';
 
 type Props = CollectionEntry<'blog'>['data'] & { slug: string };
 
@@ -60,10 +60,12 @@ const { title, description, pubDate, updatedDate, socialImage, heroImage, enable
 					</small>
 				))
 			}
-		</div>
+   </div>
+   <!--
 		<div style={{ marginTop: "1em" }}>
 			<Reaction slug={slug} client:load />
 		</div>
+   -->
 		<Footer />
 	</body>
 </html>
