@@ -13,7 +13,7 @@ export default defineConfig({
   redirects: {
     '/pages/about': '/about',
   },
-	site: 'https://site.kongsys.com',
+	site: 'https://nmreadelf.github.io',
 	integrations: [mdx(), sitemap(), react()],
 	output: 'static',
 	markdown: {
