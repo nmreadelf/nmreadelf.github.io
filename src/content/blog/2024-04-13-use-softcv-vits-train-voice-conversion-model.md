@@ -26,7 +26,7 @@ tags: ["so-vits-svc", "machine leanring", "voice conversion"]
 ### 语音文件准备
 
 准备一份wav文件。我是自己读了一篇文章，时长5分钟左右。
-我创建了一个项目文件夹，讲自己的声音文件放到 项目文件夹下。
+我创建了一个项目文件夹，将自己的声音文件放到 项目文件夹下。
 我的环境是这样的:
 ```bash
 mkdir -p myvoice/raw
@@ -38,7 +38,7 @@ cd myvoice
 
 ### 数据切分
 
-数据处理主要是切分声音文件，讲文件按照时长(时长不固定)切分。
+数据处理将声音文件切成一个个片段。
 
 这里另外说一句，因为我只需要训练我的声音，所以我用的svc pre-split, 如果有多个人，使用`svc pre-sd`命令切分，具体操作看文档
 
@@ -74,7 +74,7 @@ mv dataset_raw/*wav dataset_raw/bobo
 
 ### Preprocessing part 3: hubert
 
-使用`hubert`处理一下, 如果本地没有用到的模型，它会自动下载
+使用`hubert`处理一下, 如果本地没有用到的模型，它会自动下载, 会给每个声音文件生成`.data.pt` 文件
 `svc pre-hubert -i dataset_raw/`
 
 ### train
@@ -83,7 +83,7 @@ mv dataset_raw/*wav dataset_raw/bobo
 `svc train -t`
 
 ### infer 
-训练玩以后，就可以推理拉，这里需要注意的是，推理一定要在自己项目目录里面, 我的环境项目目录是`myvoice`(不在项目目录里面也行，但是需要指定模型目录和配置文件，比较麻烦,具体如何使用查看`infer`命令帮助)
+训练玩以后，就可以推理拉，这里需要注意的是，推理要在自己项目目录里面, 我的环境项目目录是`myvoice`(不在项目目录里面也行，但是需要指定模型目录和配置文件，比较麻烦,具体如何使用查看`infer`命令帮助)
 
 这里我找了一个文件`test.wav`，将`test.wav` 文件里面的人声换成我的声音, 转换后的内容输出到`conv_test.mp4`文件
 `svc test.wav -o conv_test.mp3`
