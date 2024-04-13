@@ -19,7 +19,9 @@ tags: ["so-vits-svc", "machine leanring", "voice conversion"]
 
 ### 系统软件准备
 先安装一下 deb 包，这个包，在后续训练的过程中会用到，具体哪个步骤我忘了，在我的环境缺这个包，导致我无法继续进行训练
-`apt-get install libportaudio2`
+```bash
+apt-get install libportaudio2
+```
 
 `so-vits-svc-fork` 这个包的安装教程，按照官方的 readme 来进行，这个我没有碰到什么坑
 
@@ -62,7 +64,9 @@ mv dataset_raw/*wav dataset_raw/bobo
 ### Preprocessing part 1: resample
 
 `resample` 执行完成后，会生成`dataset`文件夹
-`svc pre-resample -i dataset_raw`
+```bash
+svc pre-resample -i dataset_raw
+```
 
 大概看了一下代码，`pre-resample` 调用 `librosa` 对声音文件进行处理，大概就是去掉每个`wav`文件开头和结尾静音的部分(或者说没有声音的部分)。
 
@@ -70,20 +74,28 @@ mv dataset_raw/*wav dataset_raw/bobo
 ### Preprocessing part 2: config
 
 这一步执行完后, 会生成 `configs` 和 `filelits` 目录 
-`svc pre-config -i dataset_raw`
+```bash
+svc pre-config -i dataset_raw
+```
 
 ### Preprocessing part 3: hubert
 
 使用`hubert`处理一下, 如果本地没有用到的模型，它会自动下载, 会给每个声音文件生成`.data.pt` 文件
-`svc pre-hubert -i dataset_raw/`
+```bash
+svc pre-hubert -i dataset_raw/
+```
 
 ### train
 
 如果项目目录里面没有`so-vits-svc`模型，`train` 程序会自动下载模型，这一步训练步骤比较长，我训练自己的声音模型花了6个小时,4070 显卡
-`svc train -t`
+```bash
+svc train -t
+```
 
 ### infer 
 训练玩以后，就可以推理拉，这里需要注意的是，推理要在自己项目目录里面, 我的环境项目目录是`myvoice`(不在项目目录里面也行，但是需要指定模型目录和配置文件，比较麻烦,具体如何使用查看`infer`命令帮助)
 
 这里我找了一个文件`test.wav`，将`test.wav` 文件里面的人声换成我的声音, 转换后的内容输出到`conv_test.mp4`文件
-`svc test.wav -o conv_test.mp3`
+```bash
+svc test.wav -o conv_test.mp3
+```
