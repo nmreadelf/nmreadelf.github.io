@@ -8,7 +8,7 @@ tags: ["so-vits-svc", "machine leanring", "voice conversion"]
 
 这篇文章介绍我使用`SoftVC VITS` 训练自己的声音转换模型，过程中遇到的一些坑。
 
-按照 官方(github)[https://github.com/voicepaw/so-vits-svc-fork/tree/main] 里面写的文档来训练，官方的文档不是特别详细，所以我这这篇文章算是对官方文档小小的补充吧
+按照 官方[github](https://github.com/voicepaw/so-vits-svc-fork/) 里面写的文档来训练，官方的文档不是特别详细，所以我这这篇文章算是对官方文档小小的补充吧
 
 环境信息
 - 操作系统: Debian 12
